@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Window.a
-
-
-
-
 
 
 namespace OpenHouse
@@ -13,15 +8,28 @@ namespace OpenHouse
     class Program
           
     {
+        public int NumberOfRooms = 12;
+        public static List<Room> House = new List<Room>();
+    
         static void Main(string[] args)
         {
+            Room bedroom = new Room();
+            bedroom.Name = "Bedroom";
+            House.Add(bedroom);
+            bedroom.DescriptionOfRoom.Add("");
+
+            "______________\n"+
+           "|              |\n"
+
+//Introduction
             Console.WriteLine("Welcome to our Open House!");
 
             Console.WriteLine("What is your first name?");
-
             string firstName = Console.ReadLine();
             Console.WriteLine($"Hello, {firstName}, it's very nice to meet you.");
             Console.ReadLine();
+
+            //Begin Tour with which room to visit.
 
             Console.WriteLine("Would you like to start our tour in the  Bedroom (Enter B), Living Room (Enter L), or the Kitchen (Enter K) ");
             string roomOption = Console.ReadLine();
