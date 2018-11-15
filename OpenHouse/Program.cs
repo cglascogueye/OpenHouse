@@ -9,27 +9,46 @@ namespace OpenHouse
     class Program
 
     {
-        public int NumberOfWindow = 6;
-        public static List<House> NameOfHouse = new List<House>();
+        //https://www.youtube.com/watch?v=74KTOpJXY_o
+
 
 
         static void Main(string[] args)
         {
-            // List<House> leafHouse = new List<House>();
+            List<TinyHome> listOfTinyHomes = new List<TinyHome>()
+            {
+                
+                new TinyHome()  { HouseName = "LeafHouse", SquareFeet = 160,    Cost = 41500, Description = "http://www.tinyhousing.ca/" },
+                new TinyHome()  { HouseName = "Whimsy", SquareFeet = 300 ,      Cost = 10500, Description = "https://www.windrivertinyhomes.com/the-big-whimsy" },
+                new TinyHome()  { HouseName = "FarmHouse", SquareFeet = 260,    Cost = 25000, Description = "https://tinyhouselistings.com/listings/farmhouse-chic-tiny-house-in-alabama-move-in-ready"},
+                new TinyHome()  { HouseName = "Cypress 26", SquareFeet = 290 ,  Cost = 99046, Description = "https://www.tumbleweedhouses.com/design-your-tumbleweed/?src=cypress-page-tab"},
+                new TinyHome()  { HouseName = "Ironclad", SquareFeet = 240 ,    Cost = 69000, Description = "https://www.windrivertinyhomes.com/the-ironclad" },
+                new TinyHome()  { HouseName = "Monocle", SquareFeet = 240 ,     Cost = 79900, Description = "https://www.windrivertinyhomes.com/the-monocle" },
+                new TinyHome()  { HouseName = "Urban Micro", SquareFeet = 650 , Cost = 150000, Description = "https://www.windrivertinyhomes.com/store/urban-micro-home-plans" },
+                new TinyHome()  { HouseName = "Bungalow", SquareFeet = 180 ,    Cost = 60000, Description = "https://www.windrivertinyhomes.com/wind-river-bungalow" },
+                new TinyHome()  { HouseName = "Silhouette", SquareFeet = 221 ,  Cost = 89500, Description = "https://www.windrivertinyhomes.com/the-silouette" },
+            };
 
-            // bedroom.DescriptionOfRoom.Add("This house features a loft bed. It increases the square footage of your tiny home.");
+            Console.WriteLine("What square footage are you looking for?");
+            int sqFt = Convert.ToInt32(Console.ReadLine());
+            var filteredHomes = listOfTinyHomes.Where(tinyHome => tinyHome.Cost > 10000 && tinyHome.SquareFeet > sqFt);
+            foreach (TinyHome tinyHome in filteredHomes)
+                Console.WriteLine(tinyHome.HouseName + ":   " + tinyHome.SquareFeet + "sqft    " + " " + tinyHome.Cost + "     " + tinyHome.Description + Console.ReadLine());
+            
+                Console.ReadLine();
 
-            // "______________\n"+
-            //"|              |\n"
+            Console.WriteLine("What price are you looking for?");
+            int Cost = Convert.ToInt32(Console.ReadLine());
+            filteredHomes = listOfTinyHomes.Where(tinyHome => tinyHome.Cost > Cost && tinyHome.SquareFeet > sqFt);
+            foreach (TinyHome tinyHome in filteredHomes)
+                Console.WriteLine(tinyHome.HouseName + ":   " + tinyHome.SquareFeet + "sqft    " + " " + tinyHome.Cost + "     " + tinyHome.Description + Console.ReadLine());
 
-            //Introduction
+            Console.ReadLine();
 
-            Console.WriteLine("Tiny houses are popping up around the country as more people decide to downsize their lives.");
-            Console.WriteLine("While the structures often measure less than 300 square feet, the tiny house movement isn't");
-            Console.WriteLine("necessarily about sacrifice. With thoughtful, innovative designs, some homeowners have");
-            Console.WriteLine("discovered a small house actually leads to a simpler yet fuller life, connecting them with");
-            Console.WriteLine("family, friends, and nature while freeing them from mortgages and an urge to keep up");
-            Console.WriteLine("with the Joneses.  ~ David Hillegas");
+
+            Console.WriteLine("Tiny houses are popping up around the country as more people decide to downsize their lives.\nWhile the structures often measure less than 300 square feet,\n" +
+                "the tiny house movement isn't necessarily about sacrifice.\n With thoughtful, innovative designs, some homeowners have\ndiscovered a small house actually leads to a simpler yet fuller life, \nconnecting them with" +
+            "family, friends, and nature while freeing them from mortgages and an urge to keep up\n with the Joneses.  ~ David Hillegas");
             Console.ReadLine();
             Console.WriteLine("Welcome to Tiny Homes!");
             Console.WriteLine("Can you share your first name?");
@@ -47,6 +66,12 @@ namespace OpenHouse
             //House OPtion #1 - Economical (Price Driven)
             if (houseOption.ToLower() == "1")
             {
+                filteredHomes = listOfTinyHomes.Where(tinyHome => tinyHome.Cost < 50000);
+                foreach (TinyHome tinyHome in filteredHomes)
+                    Console.WriteLine(tinyHome.HouseName + ":   " + tinyHome.SquareFeet + "sqft    " + " " + tinyHome.Cost + "     " + tinyHome.Description + Console.ReadLine());
+
+                Console.ReadLine();
+
                 Console.WriteLine("Ok, let's look at some of the features for the first version of our tiny homes:");
                 Console.WriteLine(" Select  Cost:  (C)");
                 Console.WriteLine("Square Footage: (S)");
@@ -57,7 +82,7 @@ namespace OpenHouse
 
                 if (houseFeatures.ToUpper() == "C")
                 {
-                    Console.WriteLine("The cost for the first version of my Tiny Home is $20,000! " +
+                    Console.WriteLine("The cost for the first version of my Tiny Home is $20,000!" +
                     "That's right, this includes everything you will need for build out, setup and turnkey, move-in ready!");
                     Console.ReadLine();
                     Console.WriteLine("Select (S) for square footage or (B) for the Bed setup or (T) for Toilet Type");
@@ -86,7 +111,7 @@ namespace OpenHouse
                         Console.WriteLine("A sofa bed is compatible for this version.");
                         Console.WriteLine("The comforts of your sitting area by day can transform into a bedroom in the evening.");
                         Console.ReadLine();
-                        
+
                         Console.WriteLine("Select (C) for square footage or (S) for the Bed setup or (T) for Toilet Type.");
                         houseFeatures = Console.ReadLine();
                         if (houseFeatures.ToUpper() == "C")
@@ -143,7 +168,7 @@ namespace OpenHouse
                             {
                                 Console.WriteLine("A bucket toilet is installed in the first version. Remember you may have to do a bit more work with this" +
                                   "type of elimination infrastructure, but its affordable!");
-                              
+
                                 Console.ReadLine();
                                 Console.WriteLine("Select (C) for cost or (S) for the Square Footage or (B) for the recommended Bed used for this home.");
                                 houseFeatures = Console.ReadLine();
@@ -165,81 +190,86 @@ namespace OpenHouse
                                     Console.ReadLine();
                                 }
                             }
-
-                            //House Option #2 - Luxury Based
-                            else if (houseOption == "2")
-                            {
-                                Console.WriteLine("Ok, let's look at some of the features for the second version of our tiny homes:" +
-                                    " Select  Cost:           (C)" +
-                                     "Square Footage: (S)" +
-                                     "BedType:        (B)" +
-                                     "ToiletType:     (T)");
-                                // houseFeatures = Console.ReadLine();
-
-                                if (houseFeatures.ToUpper() == "C")
-                                {
-                                    Console.WriteLine("The cost for the second version of my Tiny Home is $41,500! " +
-                                      "That's right, this includes everything you will need for build out, setup and turnkey operation.");
-                                    Console.ReadLine();
-                                }
-                                else if (houseFeatures.ToUpper() == "S")
-                                {
-                                    Console.WriteLine("The square footage for this home is 160 square feet");
-                                    Console.ReadLine();
-                                }
-                                else if (houseFeatures == "B")
-                                {
-                                    Console.WriteLine("A sofa bed and a loft is compatible for this version. So that the comforts of your sitting area transfrom into a bedroom in the evening.");
-                                    Console.ReadLine();
-                                }
-                                else if (houseFeatures == "T")
-                                {
-                                    Console.WriteLine("A compost toilet is installed in the first version. Remember you may have to do a bit more work with this" +
-                                      "type of elimination infrastructure, but its affordable!");
-                                }
-                            }
-                            //House Option #3 -- Smallest Environmental Footprint
-                            else if (houseOption == "3")
-
-                            {
-                                Console.WriteLine("Ok, let's look at some of the features for the third version of our tiny homes:" +
-                                    " Select  Cost:           (C)" +
-                                             "Square Footage: (S)" +
-                                             "BedType:        (B)" +
-                                             "ToiletType:     (T)");
-                                // houseFeatures = Console.ReadLine();
-                                //public static char[] houseFeature { 'C', 'S', 'B', 'T' }
-
-                                if (houseFeatures == "C")
-                                {
-                                    Console.WriteLine("The cost for the third version of my Tiny Home is $20,000! " +
-                                      "That's right, this includes everything you will need for build out, setup and turnkey operation.");
-                                    Console.ReadLine();
-                                }
-                                else if (houseFeatures == "S")
-                                {
-                                    Console.WriteLine("The square footage for this home is 97 square feet of floor space.");
-                                    Console.ReadLine();
-                                }
-                                else if (houseFeatures == "B")
-                                {
-                                    Console.WriteLine("A murphy bed is compatible for this version. So that the comforts of your sitting area transfrom into a bedroom in the evening.");
-                                    Console.ReadLine();
-                                }
-                                else if (houseFeatures == "T")
-                                {
-                                    Console.WriteLine("A composting toilet is installed in the first version. Remember you may have to do a bit more work with this" +
-                                      "type of elimination infrastructure, but its affordable!");
-                                    Console.ReadLine();
-                                }
-                            }
                         }
                     }
                 }
             }
-        }
-    }
-}
+
+            //House Option #2 - Luxury Based
+            else if (houseOption == "2")
+            {
+                Console.WriteLine("Ok, let's look at some of the features for the second version of our tiny homes:" +
+                    " Select  Cost:           (C)" +
+                     "Square Footage: (S)" +
+                     "BedType:        (B)" +
+                     "ToiletType:     (T)");
+                string houseFeatures = Console.ReadLine();
+
+                if (houseFeatures.ToUpper() == "C")
+                {
+                    Console.WriteLine("The cost for the second version of my Tiny Home is $41,500! " +
+                      "That's right, this includes everything you will need for build out, setup and turnkey operation.");
+                    Console.ReadLine();
+                }
+                else if (houseFeatures.ToUpper() == "S")
+                {
+                    Console.WriteLine("The square footage for this home is 160 square feet");
+                    Console.ReadLine();
+                }
+                else if (houseFeatures == "B")
+                {
+                    Console.WriteLine("A sofa bed and a loft is compatible for this version. So that the comforts of your sitting area transfrom into a bedroom in the evening.");
+                    Console.ReadLine();
+                }
+                else if (houseFeatures == "T")
+                {
+                    Console.WriteLine("A compost toilet is installed in the first version. Remember you may have to do a bit more work with this" +
+                      "type of elimination infrastructure, but its affordable!");
+                }
+            }
+            //House Option #3 -- Smallest Environmental Footprint
+            else if (houseOption == "3")
+
+            {
+                Console.WriteLine("Ok, let's look at some of the features for the third version of our tiny homes:" +
+                    " Select  Cost:           (C)" +
+                             "Square Footage: (S)" +
+                             "BedType:        (B)" +
+                             "ToiletType:     (T)");
+                string houseFeatures = Console.ReadLine();
+                //public static char[] houseFeature { 'C', 'S', 'B', 'T' }
+
+                if (houseFeatures == "C")
+                {
+                    Console.WriteLine("The cost for the third version of my Tiny Home is $20,000! " +
+                      "That's right, this includes everything you will need for build out, setup and turnkey operation.");
+                    Console.ReadLine();
+                }
+                else if (houseFeatures == "S")
+                {
+                    Console.WriteLine("The square footage for this home is 97 square feet of floor space.");
+                    Console.ReadLine();
+                }
+                else if (houseFeatures == "B")
+                {
+                    Console.WriteLine("A murphy bed is compatible for this version. So that the comforts of your sitting area transfrom into a bedroom in the evening.");
+                    Console.ReadLine();
+                }
+                else if (houseFeatures == "T")
+                {
+                    Console.WriteLine("A composting toilet is installed in the first version. Remember you may have to do a bit more work with this" +
+                      "type of elimination infrastructure, but its affordable!");
+                    Console.ReadLine();
+                }
+            }
+                        }
+                    }
+                }
+            
+        
+    
+    
+
 
             
 

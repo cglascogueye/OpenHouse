@@ -33,6 +33,15 @@ namespace OpenHouse
       } 
     }
 
+    class TinyHome
+    {
+        public string HouseName { get; set; }
+        public int SquareFeet { get; set; }
+        public decimal Cost { get; set; }
+        public string Description { get; set; }
+
+    }
+
     //class Pyramid
     //{
     //    private static void Main(string[] args)
